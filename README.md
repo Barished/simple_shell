@@ -92,4 +92,4 @@ ls -la
 ## Acknowledgments :
 - The creators of the C language.
 - Our software engineer-in-residence.
-- Betty Holberton | Alx-Afddd
+- Betty Holberton | Alx-Africa
