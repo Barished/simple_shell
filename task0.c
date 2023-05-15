@@ -1,5 +1,4 @@
-#include "main.h"
-#include <stdio.h>
+#include "simpshell.h"
 
 /**
  **_strcpy - copies the string pointed to by src, including

@@ -1,10 +1,21 @@
-#ifndef SIMPSHELL_H
-#define SIMPSHELL_H
-
-char *read_line(void);
-char **tokenize(char *line);
-int execute(char **args);
+#ifndef TASKS_H
+#define TASKS_H
 
 
 
-#endif /*SIMPSHELL_H*/
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+#include <errno.h>
+#include <sys/wait.h>
+#include <sys/types.h>
+
+#define BUFSIZE 1024
+#define MAX_ARGS 16
+
+void disp_prmt(char **av, char **env);
+
+
+
+#endif /*TASKS_H*/
