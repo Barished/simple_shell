@@ -1,5 +1,5 @@
-#ifndef TASKS_H
-#define TASKS_H
+#ifndef SHELL_H
+#define SHELL_H
 
 
 
@@ -18,4 +18,4 @@ void disp_prmt(char **av, char **env);
 
 
 
-#endif /*TASKS_H*/
+#endif /*SHELL_H*/
