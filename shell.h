@@ -21,5 +21,7 @@ void handleExit(const char* command);
 char *read_line(void);
 int tokenize(const char* input, char** tokens, const char *delimiter);
 int execute(char **args);
+void handleCD(const char *directory);
+void print_environment(char **env);
 
 #endif /*SHELL_H*/
