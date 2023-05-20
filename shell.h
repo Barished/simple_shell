@@ -13,9 +13,13 @@
 
 #define BUFSIZE 1024
 #define MAX_ARGS 16
+#define MAX_TOKENS 100
+#define MAX_TOKEN_LENGTH 100
 
-void disp_prmt(char **av, char **env);
 
-
+void handleExit(const char* command);
+char *read_line(void);
+int tokenize(const char* input, char** tokens, const char *delimiter);
+int execute(char **args);
 
 #endif /*SHELL_H*/

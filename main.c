@@ -8,12 +8,36 @@
  * Return: Success
  */
 
-int main(int ac, char **av, char **env)
+int main()
 {
+	int token_count, i;
+	char *line = NULL;
+	char **tokens = NULL;
+
 	while (1)
 	{
-		if (ac == 1)
-			disp_prmt(av, env);
+
+		printf(">");
+		line = read_line();
+		tokens = malloc(MAX_TOKENS * sizeof(char*));
+		if (tokens == NULL)
+		{
+			fprintf(stderr, "Error: Failed to allocate memory.\n");
+			exit(EXIT_FAILURE);
+		}
+		token_count = tokenize(line, tokens, " ");
+
+		handleExit(tokens[0]);
+
+		execute(tokens);
+
+		for (i = 0; i < token_count; i++)
+		{
+			free(tokens[i]);
+		}
+
+		free(tokens);
+		free(line);
 	}
 	return (0);
 }
