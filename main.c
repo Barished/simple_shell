@@ -3,6 +3,8 @@
 /**
  * main - the main program
  * @env: Environment variable
+ * @argc: argumemt count
+ * @argv: argument variable
  * Return: Success
  */
 
@@ -18,7 +20,7 @@ int main(int argc, char **argv, char **env)
 	{
 		printf(">");
 		line = read_line();
-		tokens = malloc(MAX_TOKENS * sizeof(char*));
+		tokens = malloc(MAX_TOKENS * sizeof(char *));
 		if (tokens == NULL)
 		{
 			fprintf(stderr, "Error: Failed to allocate memory.\n");

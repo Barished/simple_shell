@@ -8,49 +8,84 @@
 
 void handleCD(const char *directory)
 {
-	char *home_directory = getenv("HOME");
-	char *previous_directory = getenv("PWD");
+	char *home_directory = _getenv("HOME");
+	char *previous_directory = _getenv("PWD");
 	char cwd[1024];
 
 	if (directory == NULL)
 	{
-		if (home_directory == NULL)
-		{
-			fprintf(stderr, "cd: No home directory found.\n");
-			return;
-		}
-		if (chdir(home_directory) != 0)
-		{
-			perror("cd");
-		}
+		handleCDHomeDirectory(home_directory);
 	}
-	else if (strcmp(directory, "-") == 0)
+	else if (_strcmp(directory, "-") == 0)
 	{
-		if (previous_directory == NULL)
-		{
-			fprintf(stderr, "No previous directory available.\n");
-			return;
-		}
-		if (chdir(previous_directory) != 0)
-		{
-			perror("cd");
-		}
+		handleCDPreviousDirectory(previous_directory);
 	}
 	else
 	{
-		if (chdir(directory) != 0)
-		{
-			perror("cd");
-		}
+		handleCDDirectory(directory);
 	}
-
 
 	if (getcwd(cwd, sizeof(cwd)) != NULL)
 	{
-		setenv("PWD", cwd, 1);
+		handleSetEnv("PWD", cwd, 1);
 	}
+
 	else
 	{
 		perror("getcwd");
+	}
+}
+
+/**
+ * handleCDHomeDirectory - helper function, handles cd with no directory arg
+ * @home_directory: The home directory path
+ * Return: Success
+ */
+
+void handleCDHomeDirectory(const char *home_directory)
+{
+	if (home_directory == NULL)
+	{
+		fprintf(stderr, "cd: No home directory found.\n");
+		return;
+	}
+
+	if (chdir(home_directory) != 0)
+	{
+		perror("cd");
+	}
+}
+
+/**
+ * handleCDPreviousDirectory - helper function, handles cd with '-' argument
+ * @previous_directory: The previous directory path
+ * Return: Success
+ */
+
+void handleCDPreviousDirectory(const char *previous_directory)
+{
+	if (previous_directory == NULL)
+	{
+		fprintf(stderr, "No previous directory available.\n");
+		return;
+	}
+
+	if (chdir(previous_directory) != 0)
+	{
+		perror("cd");
+	}
+}
+
+/**
+ * handleCDDirectory - function, handles cd with a specific directory argument
+ * @directory: The directory path
+ * Return: Success
+ */
+
+void handleCDDirectory(const char *directory)
+{
+	if (chdir(directory) != 0)
+	{
+		perror("cd");
 	}
 }
