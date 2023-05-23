@@ -10,7 +10,6 @@ void handleCD(const char *directory)
 {
 	char *home_directory = _getenv("HOME");
 	char *previous_directory = _getenv("PWD");
-	char cwd[1024];
 
 	if (directory == NULL)
 	{
@@ -25,9 +24,9 @@ void handleCD(const char *directory)
 		handleCDDirectory(directory);
 	}
 
-	if (getcwd(cwd, sizeof(cwd)) != NULL)
+	if (getcwd(current_directory, sizeof(current_directory)) != NULL)
 	{
-		handleSetEnv("PWD", cwd, 1);
+		handleSetEnv("PWD", current_directory, 1);
 	}
 
 	else

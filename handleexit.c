@@ -18,7 +18,7 @@ void handleExit(const char *command)
 		}
 		else if (_strncmp(command, "exit ", 5) == 0)
 		{
-			status = atoi(command + 5);
+			status = customAtoi(command + 5);
 			exit(status);
 		}
 	}
