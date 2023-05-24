@@ -15,16 +15,17 @@
 #define MAX_TOKENS 100
 #define MAX_TOKEN_LENGTH 100
 
-#define MAX_ALIAS_COUNT 100
-#define MAX_ALIAS_LENGTH 50
+#define MAX_ALIASES 100
+#define MAX_ALIAS_LENGTH 100
 
-struct Alias {
-    char name[MAX_ALIAS_LENGTH];
-    char value[MAX_ALIAS_LENGTH];
-};
+typedef struct AliasNode {
+    char *name;
+    char *value;
+    struct AliasNode *next;
+} AliasNode;
 
-struct Alias aliases[MAX_ALIAS_COUNT];
-extern int aliasCount;
+extern AliasNode *aliasList;
+//AliasNode *aliasList = NULL;
 
 extern char** environ;
 char current_directory[1024];
@@ -52,5 +53,6 @@ void printAlias(const char *name);
 void setAlias(const char *name, const char *value);
 void handleAlias(char **args);
 char *_strcpy(char *destination, const char *source);
+void freeAliases(void);
 
 #endif /*SHELL_H*/

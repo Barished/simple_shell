@@ -13,6 +13,7 @@ int main(int argc, char **argv, char **env)
 	int token_count, i, status;
 	char *line = NULL;
 	char **tokens = NULL;
+	char **args;
 
 	(void)argc, (void)argv;
 	while (1)
@@ -42,7 +43,21 @@ int main(int argc, char **argv, char **env)
 			handleAlias(tokens);
 			continue;
 		}
+		args = malloc((token_count + 1) * sizeof(char *));
+		if (args == NULL)
+		{
+			fprintf(stderr, "Error: Failed to allocate memory.\n");
+			exit(EXIT_FAILURE);
+		}
+
+		for (i = 0; i < token_count; i++)
+		{
+			args[i] = tokens[i];
+		}
+		args[token_count] = NULL;
 		status = execute_commands(tokens);
+
+		free(args);
 		for (i = 0; i < token_count; i++)
 		{
 			free(tokens[i]);

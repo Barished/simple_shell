@@ -1,16 +1,17 @@
 #include "shell.h"
+AliasNode *aliasList = NULL;
 
 /**
  * printAliases - prints all aliases in the format name='value'
  */
 void printAliases(void)
 {
-	int i;
-	int aliasCount = 0;
+	AliasNode *current = aliasList;
 
-	for (i = 0; i < aliasCount; i++)
+	while (current != NULL)
 	{
-		printf("%s='%s'\n", aliases[i].name, aliases[i].value);
+		printf("%s='%s'\n", current->name, current->value);
+		current = current->next;
 	}
 }
 
@@ -20,15 +21,16 @@ void printAliases(void)
  */
 void printAlias(const char *name)
 {
-	int i;
+	AliasNode *current = aliasList;
 
-	for (i = 0; i < aliasCount; i++)
+	while (current != NULL)
 	{
-		if (_strcmp(name, aliases[i].name) == 0)
+		if (_strcmp(name, current->name) == 0)
 		{
-			printf("%s='%s'\n", aliases[i].name, aliases[i].value);
+			printf("%s='%s'\n", current->name, current->value);
 			return;
 		}
+		current = current->next;
 	}
 }
 
@@ -39,28 +41,62 @@ void printAlias(const char *name)
  */
 void setAlias(const char *name, const char *value)
 {
-	int i;
+	AliasNode *current = aliasList;
 
-	for (i = 0; i < aliasCount; i++)
+	while (current != NULL)
 	{
-		if (_strcmp(name, aliases[i].name) == 0)
+		if (_strcmp(name, current->name) == 0)
 		{
-			_strcpy(aliases[i].value, value);
+			free(current->value);
+			current->value = strdup(value);
 			return;
 		}
+		current = current->next;
 	}
 
-	if (aliasCount >= MAX_ALIAS_COUNT)
+	AliasNode *newAlias = malloc(sizeof(AliasNode));
+
+	if (newAlias == NULL)
 	{
-		fprintf(stderr, "Error: Maximum alias count reached.\n");
+		fprintf(stderr, "Error: Failed to allocate memory for alias.\n");
 		return;
 	}
+	newAlias->name = strdup(name);
+	newAlias->value = strdup(value);
+	newAlias->next = NULL;
 
-	struct Alias newAlias;
+	if (aliasList == NULL)
+	{
+		aliasList = newAlias;
+	}
+	else
+	{
+		current = aliasList;
+		while (current->next != NULL)
+		{
+			current = current->next;
+		}
+		current->next = newAlias;
+	}
+}
 
-	strcpy(newAlias.name, name);
-	strcpy(newAlias.value, value);
-	aliases[aliasCount++] = newAlias;
+/**
+ * freeAliases - frees the alias command
+ */
+void freeAliases(void)
+{
+	AliasNode *current = aliasList;
+
+	while (current != NULL)
+	{
+		AliasNode *next = current->next;
+
+		free(current->name);
+		free(current->value);
+		free(current);
+		current = next;
+	}
+	aliasList = NULL;
 }
 
 /**
@@ -69,8 +105,8 @@ void setAlias(const char *name, const char *value)
  */
 void handleAlias(char **args)
 {
-	char *equalSign;
 	int i;
+	char *equalSign;
 
 	if (args[1] == NULL)
 	{
