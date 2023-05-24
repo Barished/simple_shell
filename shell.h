@@ -16,6 +16,7 @@
 #define MAX_TOKEN_LENGTH 100
 
 extern char** environ;
+char current_directory[1024];
 
 void handleExit(const char* command);
 char *read_line(void);
@@ -33,6 +34,7 @@ void handleCDPreviousDirectory(const char *previous_directory);
 void handleCDDirectory(const char *directory);
 void handleSetEnv(const char *variable, const char *value, int overwrite);
 void handleUnsetEnv(const char *variable);
-
+int customAtoi(const char *str);
+int execute_commands(char **commands);
 
 #endif /*SHELL_H*/

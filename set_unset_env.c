@@ -4,6 +4,7 @@
  * handleSetEnv - a function to handle the setenv command
  * @variable: The environment variable to set
  * @value: The value to assign to the environment variable
+ * @overwrite: The number of charater to write
  * Return: Success
  */
 
