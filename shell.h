@@ -15,6 +15,17 @@
 #define MAX_TOKENS 100
 #define MAX_TOKEN_LENGTH 100
 
+#define MAX_ALIAS_COUNT 100
+#define MAX_ALIAS_LENGTH 50
+
+struct Alias {
+    char name[MAX_ALIAS_LENGTH];
+    char value[MAX_ALIAS_LENGTH];
+};
+
+struct Alias aliases[MAX_ALIAS_COUNT];
+extern int aliasCount;
+
 extern char** environ;
 char current_directory[1024];
 
@@ -36,5 +47,10 @@ void handleSetEnv(const char *variable, const char *value, int overwrite);
 void handleUnsetEnv(const char *variable);
 int customAtoi(const char *str);
 int execute_commands(char **commands);
+void printAliases(void);
+void printAlias(const char *name);
+void setAlias(const char *name, const char *value);
+void handleAlias(char **args);
+char *_strcpy(char *destination, const char *source);
 
 #endif /*SHELL_H*/

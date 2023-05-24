@@ -37,6 +37,11 @@ int main(int argc, char **argv, char **env)
 			handleCD(tokens[1]);
 			continue;
 		}
+		if (_strcmp(tokens[0], "alias") == 0)
+		{
+			handleAlias(tokens);
+			continue;
+		}
 		status = execute_commands(tokens);
 		for (i = 0; i < token_count; i++)
 		{

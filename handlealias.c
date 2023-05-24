@@ -6,7 +6,7 @@
 void printAliases(void)
 {
 	int i;
-	int aliasCount;
+	int aliasCount = 0;
 
 	for (i = 0; i < aliasCount; i++)
 	{
