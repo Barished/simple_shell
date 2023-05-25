@@ -11,6 +11,7 @@
 #include <sys/types.h>
 
 #define BUFSIZE 1024
+#define BUFFER_SIZE 1024
 #define MAX_ARGS 16
 #define MAX_TOKENS 100
 #define MAX_TOKEN_LENGTH 100
@@ -27,7 +28,6 @@ typedef struct AliasNode {
 } AliasNode;
 
 extern AliasNode *aliasList;
-//AliasNode *aliasList = NULL;
 
 extern char** environ;
 char current_directory[1024];

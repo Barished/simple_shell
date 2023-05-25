@@ -6,7 +6,9 @@ AliasNode *aliasList = NULL;
  */
 void printAliases(void)
 {
-	AliasNode *current = aliasList;
+	AliasNode *current;
+
+	current = aliasList;
 
 	while (current != NULL)
 	{
@@ -21,7 +23,9 @@ void printAliases(void)
  */
 void printAlias(const char *name)
 {
-	AliasNode *current = aliasList;
+	AliasNode *current;
+
+	current = aliasList;
 
 	while (current != NULL)
 	{
@@ -41,7 +45,9 @@ void printAlias(const char *name)
  */
 void setAlias(const char *name, const char *value)
 {
-	AliasNode *current = aliasList;
+	AliasNode *current;
+
+	current = aliasList;
 
 	while (current != NULL)
 	{
@@ -58,7 +64,9 @@ void setAlias(const char *name, const char *value)
 		current = current->next;
 	}
 
-	AliasNode *newAlias = malloc(sizeof(AliasNode));
+	AliasNode *newAlias;
+
+	newAlias = malloc(sizeof(AliasNode));
 
 	if (newAlias == NULL)
 	{
