@@ -50,11 +50,16 @@ void handleSetEnv(const char *variable, const char *value, int overwrite);
 void handleUnsetEnv(const char *variable);
 int customAtoi(const char *str);
 int execute_commands(char **commands);
-void printAliases(void);
-void printAlias(const char *name);
-void setAlias(const char *name, const char *value);
+void printAliases(AliasNode *aliasList);
+void printAlias(const char *name, AliasNode *aliasList);
+void setAlias(const char *name, const char *value, AliasNode **aliasList);
 void handleAlias(char **args);
 char *_strcpy(char *destination, const char *source);
-void freeAliases(void);
+void freeAliases(AliasNode **aliasList);
+int process_command(char **args, char **env, int count, char **toks, char *lin);
+void free_tokens(int token_count, char **tokens);
+void allocate_tokens(int token_count, char ***tokens);
+void print_prompt(void);
+void execute_child(char **args);
 
 #endif /*SHELL_H*/

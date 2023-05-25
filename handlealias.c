@@ -1,10 +1,10 @@
 #include "shell.h"
-AliasNode *aliasList = NULL;
 
 /**
  * printAliases - prints all aliases in the format name='value'
- */
-void printAliases(void)
+ * @aliasList: Alias Node
+*/
+void printAliases(AliasNode *aliasList)
 {
 	AliasNode *current;
 
@@ -20,8 +20,9 @@ void printAliases(void)
 /**
  * printAlias - prints the value of a specific alias
  * @name: The name of the alias
- */
-void printAlias(const char *name)
+ * @aliasList: Alias Node
+*/
+void printAlias(const char *name, AliasNode *aliasList)
 {
 	AliasNode *current;
 
@@ -42,13 +43,13 @@ void printAlias(const char *name)
  * setAlias - sets or update the value of an alias
  * @name: The name of the alias
  * @value: The value of the alias
- */
-void setAlias(const char *name, const char *value)
+ * @aliasList: Alias Node
+*/
+void setAlias(const char *name, const char *value, AliasNode **aliasList)
 {
-	AliasNode *current;
+	AliasNode *current, *newAlias;
 
-	current = aliasList;
-
+	current = *aliasList;
 	while (current != NULL)
 	{
 		if (_strcmp(name, current->name) == 0)
@@ -63,27 +64,23 @@ void setAlias(const char *name, const char *value)
 		}
 		current = current->next;
 	}
-
-	AliasNode *newAlias;
-
 	newAlias = malloc(sizeof(AliasNode));
-
 	if (newAlias == NULL)
 	{
-		fprintf(stderr, "Error: Failed to allocate memory for alias.\n");
+		fprintf(stderr, "Error: Failed to allocate memory for alia\n");
 		return;
 	}
 	newAlias->name = strdup(name);
 	newAlias->value = strdup(value);
 	newAlias->next = NULL;
 
-	if (aliasList == NULL)
+	if (*aliasList == NULL)
 	{
-		aliasList = newAlias;
+		*aliasList = newAlias;
 	}
 	else
 	{
-		current = aliasList;
+		current = *aliasList;
 		while (current->next != NULL)
 		{
 			current = current->next;
@@ -91,24 +88,25 @@ void setAlias(const char *name, const char *value)
 		current->next = newAlias;
 	}
 }
-
 /**
  * freeAliases - frees the alias command
+ * @aliasList: Alias Node
  */
-void freeAliases(void)
+void freeAliases(AliasNode **aliasList)
 {
-	AliasNode *current = aliasList;
+	AliasNode *current;
+	AliasNode *next;
 
+	current = *aliasList;
 	while (current != NULL)
 	{
-		AliasNode *next = current->next;
-
+		next = current->next;
 		free(current->name);
 		free(current->value);
 		free(current);
 		current = next;
 	}
-	aliasList = NULL;
+	*aliasList = NULL;
 }
 
 /**
@@ -119,10 +117,11 @@ void handleAlias(char **args)
 {
 	int i;
 	char *equalSign;
+	AliasNode *aliasList = NULL;
 
 	if (args[1] == NULL)
 	{
-		printAliases();
+		printAliases(aliasList);
 	}
 	else
 	{
@@ -133,13 +132,14 @@ void handleAlias(char **args)
 			if (equalSign != NULL)
 			{
 				*equalSign = '\0';
-				setAlias(args[i], equalSign + 1);
+				setAlias(args[i], equalSign + 1, &aliasList);
 			}
 			else
 			{
-				printAlias(args[i]);
+				printAlias(args[i], aliasList);
 			}
 			i++;
 		}
 	}
+	freeAliases(&aliasList);
 }
