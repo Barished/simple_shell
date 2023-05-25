@@ -55,8 +55,7 @@ int main(int argc, char **argv, char **env)
 			args[i] = tokens[i];
 		}
 		args[token_count] = NULL;
-		status = execute_commands(tokens);
-
+		status = execute_commands(args);
 		free(args);
 		for (i = 0; i < token_count; i++)
 		{

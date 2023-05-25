@@ -11,7 +11,7 @@ int execute_commands(char **commands)
 	int status, i = 0;
 	int result = 0;
 	int operator = 0;
-	char **args, *token;
+	char **args;
 
 	while (commands[i] != NULL)
 	{
@@ -25,18 +25,16 @@ int execute_commands(char **commands)
 		}
 		else
 		{
-			token = strdup(commands[i]);
 			args = malloc(MAX_TOKENS * sizeof(char *));
 			if (args == NULL)
 			{
 				fprintf(stderr, "Failed to alloc memory.\n");
+				free(args);
 				exit(EXIT_FAILURE);
 			}
-			tokenize(token, args, " ");
-			free(token);
 			if (args != NULL)
 			{
-				status = execute(args);
+				status = execute(commands);
 				free(args);
 
 				if (operator == 1 && status != 0)

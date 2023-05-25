@@ -18,6 +18,8 @@
 #define MAX_ALIASES 100
 #define MAX_ALIAS_LENGTH 100
 
+#define MAX_PATH_LENGTH 1024
+
 typedef struct AliasNode {
     char *name;
     char *value;

@@ -49,6 +49,10 @@ void setAlias(const char *name, const char *value)
 		{
 			free(current->value);
 			current->value = strdup(value);
+			if (current->value == NULL)
+			{
+				return;
+			}
 			return;
 		}
 		current = current->next;
