@@ -25,21 +25,21 @@ int _customAtoi(char *s)
 }
 
 /**
- * _exit - exits the simple shell
+ * _exit_more - exits the simple shell
  * @alllineptr: command line input string from user input
  * Return: exit shell if success, -1 if error
  */
-void _exit(char *alllineptr)
+void _exit_more(char *alllineptr)
 {
 	int status = 0, count = 0;
 	char **token;
 	const char *delimeter = "\n\t ";
 
-	token = _parse_to_token(count, alllineptr, delimeter);
+	token = _tokenParsing(count, alllineptr, delimeter);
 	if (token == NULL)
 	{
 		free(alllineptr);
-		_free_double_ptr(token);
+		_freePointer(token);
 		return;
 	}
 
@@ -51,12 +51,11 @@ void _exit(char *alllineptr)
 	if (status == -1)
 	{
 		perror("Error ");
-		_free_double_ptr(token);
+		_freePointer(token);
 		return;
 	}
 
-	_free_double_ptr(token);
+	_freePointer(token);
 	free(alllineptr);
-	exit(statuscode);
+	exit(status_code);
 }
-

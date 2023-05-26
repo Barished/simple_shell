@@ -19,16 +19,16 @@ void _execute(char **alllinecmd, char *linepointer, int cmdcount, char **argv)
 	if (pid == 0)
 	{
 		command = alllinecmd[0];
-		path = _getpath(alllinecmd[0]);
+		path = _execPath(alllinecmd[0]);
 		if (path == NULL)
 		{
 			set = stat(command, &buffer);
 			if (set == -1)
 			{
-				_print_error(argv[0], cmdcount, commandd);
+				_printError(argv[0], cmdcount, command);
 				_puts(": not found");
 				_putchar('\n');
-				free(alllineptr);
+				free(linepointer);
 				free(command);
 				for (i = 1; alllinecmd[i] != NULL; i++)
 					free(alllinecmd[i]);
@@ -41,14 +41,14 @@ void _execute(char **alllinecmd, char *linepointer, int cmdcount, char **argv)
 		if (alllinecmd[0] != NULL)
 		{
 			if (execve(alllinecmd[0], alllinecmd, environ) == -1)
-				_error_execute(argv[0], cmdcount, command);
+				_errorExecute(argv[0], cmdcount, command);
 		}
 	}
 	else
 		wait(&status);
 	if (WIFEXITED(status))
 	{
-		statuscode = WEXITSTATUS(status);
+		status_code = WEXITSTATUS(status);
 	}
 }
 

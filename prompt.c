@@ -21,17 +21,17 @@ void _customPrompt(char *alllineptr, size_t buffsize, int count, char **argv)
 		write(STDOUT_FILENO, PROMPT, _strlen(PROMPT));
 		fflush(stdout);
 	}
-	nread = getline(&lineptr, &size, stdin);
+	nread = getline(&alllineptr, &buffsize, stdin);
 	if (nread != -1)
 	{
-		linecommand = _parse_to_token(token, alllineptr, delimeter);
-		if (lineommand[0] == NULL)
+		linecommand = _tokenParsing(token, alllineptr, delimeter);
+		if (linecommand[0] == NULL)
 		{
 			free(linecommand);
 			free(alllineptr);
 			return;
 		}
-		builtin_stat = _built_in(linecommand, alllineptr);
+		builtin_stat = _built(linecommand, alllineptr);
 		if (builtin_stat == -1)
 		{
 			_execute(linecommand, alllineptr, count, argv);

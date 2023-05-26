@@ -18,7 +18,7 @@ int _built(char **alllinecmd, char *linepointer)
 
 	if (_strcmp("exit", alllinecmd[0]) == 0)
 	{
-		_free_double_ptr(alllinecmd);
+		_freePointer(alllinecmd);
 	}
 
 	func_ptr(linepointer);
@@ -56,8 +56,8 @@ void (*_checkbuiltin(char *function))(char *s)
 	int i;
 
 	built_t built_cmds[] = {
-		{"env", _env},
-		{"exit", _exit_},
+		{"env", _envir},
+		{"exit", _exit_more},
 		{NULL, NULL}
 	};
 
@@ -89,7 +89,7 @@ char *_cmd_path(char *cmd_path, char *command)
 		return (NULL);
 	}
 
-	len = (_strlen(cmd_path) + _strlen(pommand) + 2);
+	len = (_strlen(cmd_path) + _strlen(command) + 2);
 	path_way = malloc(sizeof(char) * len);
 	if (path_way == NULL)
 	{
@@ -103,4 +103,3 @@ char *_cmd_path(char *cmd_path, char *command)
 
 	return (path_way);
 }
-

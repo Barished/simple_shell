@@ -24,7 +24,7 @@ void _puts(char *s)
 	{
 		s = "(null)";
 	}
-	for (j = 0; str[j]; j++)
+	for (j = 0; s[j]; j++)
 	{
 		_putchar(s[j]);
 	}
