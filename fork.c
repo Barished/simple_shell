@@ -137,7 +137,7 @@ int fbuiltin(info_t *info)
 	int i, built_in_ret = -1;
 	builtin_table builtintbl[] = {
 		{"exit", my_exit},
-		{"env", _myenv},
+		{"env", curr_env},
 		{"help", my_help},
 		{"history", _listHistory},
 		{"setenv", set_env},

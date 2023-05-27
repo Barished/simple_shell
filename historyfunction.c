@@ -10,7 +10,7 @@ char *_historyFile(info_t *info)
 {
 	char *buff, *direc;
 
-	direc = _getenv(info, "HOME=");
+	direc = get_env(info, "HOME=");
 	if (!direc)
 	{
 		return (NULL);
