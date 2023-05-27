@@ -157,9 +157,9 @@ int _printdeci(int, int);
 char *_convno(long int, int, int);
 void _delcomment(char *);
 
-int _myexit(info_t *);
-int _mycd(info_t *);
-int _myhelp(info_t *);
+int my_exit(info_t *);
+int my_cd(info_t *);
+int my_help(info_t *);
 
 int _listHistory(info_t *);
 int _myalias(info_t *);
@@ -174,8 +174,8 @@ void _infoFree(info_t *, int);
 
 char *_getenv(info_t *, const char *);
 int _myenv(info_t *);
-int _mysetenv(info_t *);
-int _myunsetenv(info_t *);
+int set_env(info_t *);
+int unset_env(info_t *);
 int populate_env_list(info_t *);
 
 char **getEnv(info_t *);

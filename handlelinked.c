@@ -21,7 +21,7 @@ list_t *addNode(list_t **head, const char *s, int n)
 		return (NULL);
 	}
 	_memset((void *)currenthead, 0, sizeof(list_t));
-	currenthead->n = n;
+	currenthead->num = n;
 	if (s)
 	{
 		currenthead->s = _strdup(s);
@@ -122,7 +122,7 @@ int _indexdelnode(list_t **head, unsigned int ind)
 	{
 		node = *head;
 		*head = (*head)->next;
-		free(node->str);
+		free(node->s);
 		free(node);
 		return (1);
 	}

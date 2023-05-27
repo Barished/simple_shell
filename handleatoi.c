@@ -29,7 +29,7 @@ int _atoi(char *s)
 		{
 			count = 1;
 			outcome *= 10;
-			result += (s[i] - '0');
+			outcome += (s[i] - '0');
 		}
 		else if (count == 1)
 			count = 2;

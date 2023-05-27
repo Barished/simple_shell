@@ -35,7 +35,7 @@ list_t *nodestart(list_t *node, char *prefix, char c)
 
 	while (node)
 	{
-		r = starts_with(node->str, prefix);
+		r = starts_with(node->s, prefix);
 		if (r && ((c == -1) || (*r == c)))
 			return (node);
 		node = node->next;
@@ -61,9 +61,9 @@ void fork_cmd(info_t *info)
 	}
 	if (child_pid == 0)
 	{
-		if (execve(info->path, info->argv, get_environ(info)) == -1)
+		if (execve(info->path, info->argv, getEnv(info)) == -1)
 		{
-			free_info(info, 1);
+			_infoFree(info, 1);
 			if (errno == EACCES)
 				exit(126);
 			exit(1);
@@ -76,7 +76,7 @@ void fork_cmd(info_t *info)
 		{
 			info->status = WEXITSTATUS(info->status);
 			if (info->status == 126)
-				print_error(info, "Permission denied\n");
+				_printerr(info, "Permission denied\n");
 		}
 	}
 }
@@ -99,7 +99,7 @@ void fcmd(info_t *info)
 		info->linecount_flag = 0;
 	}
 	for (i = 0, k = 0; info->arg[i]; i++)
-		if (!is_delim(info->arg[i], " \t\n"))
+		if (!_isdelim(info->arg[i], " \t\n"))
 			k++;
 	if (!k)
 		return;
@@ -112,13 +112,13 @@ void fcmd(info_t *info)
 	}
 	else
 	{
-		if ((interactive(info) || _getenv(info, "PATH=")
+		if ((interactif(info) || _getenv(info, "PATH=")
 					|| info->argv[0][0] == '/') && is_cmd(info, info->argv[0]))
 			fork_cmd(info);
 		else if (*(info->arg) != '\n')
 		{
 			info->status = 127;
-			print_error(info, "not found\n");
+			_printerr(info, "not found\n");
 		}
 	}
 }
@@ -137,9 +137,9 @@ int fbuiltin(info_t *info)
 	int i, built_in_ret = -1;
 	builtin_table builtintbl[] = {
 		{"exit", my_exit},
-		{"env", curr_env},
+		{"env", _myenv},
 		{"help", my_help},
-		{"history", _myhistory},
+		{"history", _listHistory},
 		{"setenv", set_env},
 		{"unsetenv", unset_env},
 		{"cd", my_cd},

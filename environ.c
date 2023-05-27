@@ -87,6 +87,6 @@ char *get_env(info_t *info, const char *name)
  */
 int curr_env(info_t *info)
 {
-	print_(info->env);
+	plist(info->env);
 	return (0);
 }
