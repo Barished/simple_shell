@@ -107,8 +107,8 @@ typedef struct builtin
 
 
 int shell(info_t *, char **);
-int find_builtin(info_t *);
-void find_cmd(info_t *);
+int fbuiltin(info_t *);
+void fcmd(info_t *);
 void fork_cmd(info_t *);
 
 int is_cmd(info_t *, char *);
@@ -121,11 +121,11 @@ int loophsh(char **);
 void _eputs(char *);
 int _eputchar(char);
 int _putfd(char c, int fd);
-int _pstring(char *str, int fd);
+int pstring(char *str, int fd);
 
 int _strlen(char *);
 int _strcmp(char *, char *);
-char *starts_with(const char *, const char *);
+char *startwith(const char *, const char *);
 char *_strcat(char *, char *);
 
 char *_strcpy(char *, char *);
@@ -157,26 +157,26 @@ int _printdeci(int, int);
 char *_convno(long int, int, int);
 void _delcomment(char *);
 
-int _myexit(info_t *);
-int _mycd(info_t *);
-int _myhelp(info_t *);
+int my_exit(info_t *);
+int my_cd(info_t *);
+int my_help(info_t *);
 
 int _listHistory(info_t *);
 int _myalias(info_t *);
 
-ssize_t get_input(info_t *);
+ssize_t _getinput(info_t *);
 int _getline(info_t *, char **, size_t *);
-void sigintHandler(int);
+void cblock(int);
 
 void _infoClear(info_t *);
 void _infoSet(info_t *, char **);
 void _infoFree(info_t *, int);
 
-char *_getenv(info_t *, const char *);
-int _myenv(info_t *);
-int _mysetenv(info_t *);
-int _myunsetenv(info_t *);
-int populate_env_list(info_t *);
+char *get_env(info_t *, const char *);
+int curr_env(info_t *);
+int set_env(info_t *);
+int unset_env(info_t *);
+int show_env(info_t *);
 
 char **getEnv(info_t *);
 int _unsetenv(info_t *, char *);
