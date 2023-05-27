@@ -87,12 +87,12 @@ size_t plist(const list_t *h)
 }
 
 /**
- * ltostring - returns an array of strings of the list->str
+ * toString - returns an array of strings of the list->str
  * @head: pointer to first node
  *
  * Return: array of strings
  */
-char **ltostring(list_t *head)
+char **toString(list_t *head)
 {
 	list_t *node = head;
 	size_t i = llength(head), j;
