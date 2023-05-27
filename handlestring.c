@@ -8,18 +8,19 @@
  */
 char *_strcpy(char *destination, char *source)
 {
-	int j;
+	int j = 0;
 
 	if (destination == source || source == 0)
 	{
 		return (destination);
 	}
 
-	for (j = 0; source[j] != '\0'; j++)
+	while (source[j])
 	{
 		destination[j] = source[j];
+		j++;
 	}
-	destination[j] = '\0';
+	destination[j] = 0;
 	return (destination);
 }
 

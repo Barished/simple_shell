@@ -51,7 +51,7 @@ int _eputchar(char ch)
 		write(2, buff, j);
 		j = 0;
 	}
-	if (j != BUF_FLUSH)
+	if (ch != BUF_FLUSH)
 	{
 		buff[j++] = ch;
 	}
