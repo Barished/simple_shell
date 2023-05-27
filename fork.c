@@ -1,13 +1,13 @@
 #include "shell.h"
 
 /**
- * getnodin - gets the index of a node
+ * _nodeIndex - gets the index of a node
  * @head: pointer to the list head
  * @node: pointer to the node
  *
  * Return: index of node or -1
  */
-ssize_t getnodin(list_t *head, list_t *node)
+ssize_t _nodeIndex(list_t *head, list_t *node)
 {
 	size_t i = 0;
 
