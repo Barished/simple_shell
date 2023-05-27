@@ -120,7 +120,7 @@ char *find_path(info_t *, char *, char *);
 
 
 int loophsh(char **);
-
+int _satoi(char *s);
 void _eputs(char *);
 int _eputchar(char);
 int _putfd(char c, int fd);
