@@ -35,7 +35,7 @@ int _getline(info_t *info, char **ptr, size_t *length)
 	if (i == len)
 		i = len = 0;
 
-	r = read_buf(info, buf, &len);
+	r = buffread(info, buf, &len);
 	if (r == -1 || (r == 0 && len == 0))
 		return (-1);
 
@@ -94,7 +94,7 @@ ssize_t _getinput(info_t *info)
 	char **buf_p = &(info->arg), *p;
 
 	_putchar(BUF_FLUSH);
-	r = input_buf(info, &buf, &len);
+	r = inputbuff(info, &buf, &len);
 	if (r == -1)
 		return (-1);
 	if (len)
@@ -143,7 +143,7 @@ ssize_t inputbuff(info_t *info, char **buf, size_t *len)
 
 		free(*buf);
 		*buf = NULL;
-		signal(SIGINT, sigintHandler);
+		signal(SIGINT, cblock);
 #if USE_GETLINE
 		r = getline(buf, &p, stdin);
 #else

@@ -56,7 +56,6 @@ void fork_cmd(info_t *info)
 	child_pid = fork();
 	if (child_pid == -1)
 	{
-		/* TODO: PUT ERROR FUNCTION */
 		perror("Error:");
 		return;
 	}
@@ -69,7 +68,6 @@ void fork_cmd(info_t *info)
 				exit(126);
 			exit(1);
 		}
-		/* TODO: PUT ERROR FUNCTION */
 	}
 	else
 	{
@@ -138,13 +136,13 @@ int fbuiltin(info_t *info)
 {
 	int i, built_in_ret = -1;
 	builtin_table builtintbl[] = {
-		{"exit", _myexit},
-		{"env", _myenv},
-		{"help", _myhelp},
+		{"exit", my_exit},
+		{"env", curr_env},
+		{"help", my_help},
 		{"history", _myhistory},
-		{"setenv", _mysetenv},
-		{"unsetenv", _myunsetenv},
-		{"cd", _mycd},
+		{"setenv", set_env},
+		{"unsetenv", unset_env},
+		{"cd", my_cd},
 		{"alias", _myalias},
 		{NULL, NULL}
 	};
