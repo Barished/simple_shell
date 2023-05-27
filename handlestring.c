@@ -1,38 +1,19 @@
 #include "shell.h"
 
 /**
- * _exitGetline - exits the shell on getline error or Ctrl + D (EOF condition)
- * @alllineptr: string input from user
- * Return: void
- */
-void _exitGetline(char *alllineptr)
-{
-	free(alllineptr);
-	exit(EXIT_SUCCESS);
-}
-
-
-/**
- * _ignoreSignal - function that ignores ^C (SIGINT) to the process
- * @signal: integer value of signal
- * Return: Nothing
- */
-
-void _ignoreSignal(int signal)
-{
-	(void)signal;
-	write(STDOUT_FILENO, "\n$ ", 3);
-}
-
-/**
- * _strcpy - copy from one string to the other
- * @source: pointer to string
- * @destination: pointer to string
- * Return: the pointer to destination
+ * _strcpy - copies a string
+ * @destination: the destination
+ * @source: the source
+ * Return: pointer to destination
  */
 char *_strcpy(char *destination, char *source)
 {
 	int j;
+
+	if (destination == source || source == 0)
+	{
+		return (destination);
+	}
 
 	for (j = 0; source[j] != '\0'; j++)
 	{
@@ -43,47 +24,73 @@ char *_strcpy(char *destination, char *source)
 }
 
 /**
- * _strlen - calculate the length of a string
- * @string: pointer to string
- * Return: integer length of the string
+ * _strdup - duplicates a string
+ * @s: the string to duplicate
+ * Return: pointer to the duplicated string
  */
-unsigned int _strlen(char *string)
+char *_strdup(const char *s)
 {
-	unsigned int lenght = 0;
+	int len = 0;
+	char *copy;
 
-	while (*string)
+	if (s == NULL)
 	{
-		lenght++;
-		string++;
+		return (NULL);
 	}
-	return (lenght);
+	while (*s++)
+	{
+		len++;
+	}
+	copy = malloc(sizeof(char) * (len + 1));
+	if (!copy)
+	{
+		return (NULL);
+	}
+	for (len++; len--;)
+	{
+		copy[len] = *--s;
+	}
+	return (copy);
 }
 
 /**
- * _strdup - returns a pointer to a newly allocated space in memory
- * @string: pointer to string
- * Return: returns NULL if str is NULL or a pointer to the duplicated string
+ *_puts - prints an input string
+ *@s: the string to be printed
+ * Return: Nothing
  */
-char *_strdup(char *string)
+void _puts(char *s)
 {
-	char *copy;
-	unsigned int j;
+	int j = 0;
 
-	if (string == NULL)
+	if (!s)
 	{
-		return (NULL);
+		return;
 	}
-	copy = (char *)malloc(sizeof(char) * (_strlen(string) + 1));
+	while (s[j] != '\0')
+	{
+		_putchar(s[j]);
+		j++;
+	}
+}
 
-	if (copy == NULL)
-	{
-		return (NULL);
-	}
+/**
+ * _putchar - writes the character c to stdout
+ * @ch: The character to print
+ * Return: On success 1.
+ */
+int _putchar(char ch)
+{
+	static int j;
+	static char buffer[WRITE_BUF_SIZE];
 
-	for (j = 0; string[j]; j++)
+	if (ch == BUF_FLUSH || j >= WRITE_BUF_SIZE)
 	{
-		copy[j] = string[j];
+		write(1, buffer, j);
+		j = 0;
 	}
-	copy[j] = '\0';
-	return (copy);
+	if (ch != BUF_FLUSH)
+	{
+		buffer[j++] = ch;
+	}
+	return (1);
 }
