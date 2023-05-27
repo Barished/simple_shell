@@ -12,7 +12,7 @@ int show_env(info_t *info)
 	size_t i;
 
 	for (i = 0; environ[i]; i++)
-		add_node_end(&node, environ[i], 0);
+		addEndnode(&node, environ[i], 0);
 	info->env = node;
 	return (0);
 }
@@ -71,7 +71,7 @@ char *get_env(info_t *info, const char *name)
 
 	while (node)
 	{
-		q = starts_with(node->str, name);
+		q = starts_with(node->s, name);
 		if (q && *q)
 			return (q);
 		node = node->next;
@@ -87,6 +87,6 @@ char *get_env(info_t *info, const char *name)
  */
 int curr_env(info_t *info)
 {
-	print_list_str(info->env);
+	print_(info->env);
 	return (0);
 }
