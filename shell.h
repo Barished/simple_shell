@@ -206,7 +206,7 @@ size_t plist(const list_t *h);
 int _indexdelnode(list_t **, unsigned int);
 void _freeList(list_t **);
 
-size_t list_len(const list_t *);
+size_t llength(const list_t *);
 char **toString(list_t *);
 size_t listPrint(const list_t *);
 list_t *startNode(list_t *, char *, char);
