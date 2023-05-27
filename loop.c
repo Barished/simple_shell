@@ -95,7 +95,7 @@ size_t plist(const list_t *h)
 char **ltostring(list_t *head)
 {
 	list_t *node = head;
-	size_t i = list_len(head), j;
+	size_t i = llength(head), j;
 	char **strs;
 	char *str;
 
