@@ -5,7 +5,7 @@
  * @info: pointer to struct
  * Return: 1 if shell is in interactive mode,otherwise 0
  */
-int _interactif(info_t *info)
+int interactif(info_t *info)
 {
 	return (isatty(STDIN_FILENO) && info->readfd <= 2);
 }
