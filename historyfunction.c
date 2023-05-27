@@ -10,7 +10,7 @@ char *_historyFile(info_t *info)
 {
 	char *buff, *direc;
 
-	direc = _getEnv(info, "HOME=");
+	direc = getEnv(info, "HOME=");
 	if (!direc)
 	{
 		return (NULL);
@@ -33,7 +33,7 @@ char *_historyFile(info_t *info)
 int historyWrite(info_t *info)
 {
 	ssize_t fd;
-	char *filename = get_history_file(info);
+	char *filename = _historyFile(info);
 	list_t *node = NULL;
 
 	if (!filename)
@@ -45,7 +45,7 @@ int historyWrite(info_t *info)
 		return (-1);
 	for (node = info->history; node; node = node->next)
 	{
-		_putsfd(node->s, fd);
+		_pstring(node->s, fd);
 		_putfd('\n', fd);
 	}
 	_putfd(BUF_FLUSH, fd);

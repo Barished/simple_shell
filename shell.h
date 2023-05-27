@@ -106,7 +106,7 @@ typedef struct builtin
 } builtin_table;
 
 
-int hsh(info_t *, char **);
+int shell(info_t *, char **);
 int find_builtin(info_t *);
 void find_cmd(info_t *);
 void fork_cmd(info_t *);
@@ -121,7 +121,7 @@ int loophsh(char **);
 void _eputs(char *);
 int _eputchar(char);
 int _putfd(char c, int fd);
-int _putsfd(char *str, int fd);
+int _pstring(char *str, int fd);
 
 int _strlen(char *);
 int _strcmp(char *, char *);
@@ -146,16 +146,16 @@ void *_realloc(void *, unsigned int, unsigned int);
 
 int bfree(void **);
 
-int interact(info_t *);
-int is_delim(char, char *);
+int interactif(info_t *);
+int _isdelim(char, char *);
 int _isalpha(int);
 int _atoi(char *);
 
 int _erratoi(char *);
-void print_error(info_t *, char *);
-int print_d(int, int);
-char *convert_number(long int, int, int);
-void remove_comments(char *);
+void _printerr(info_t *, char *);
+int _printdeci(int, int);
+char *_convno(long int, int, int);
+void _delcomment(char *);
 
 int _myexit(info_t *);
 int _mycd(info_t *);
@@ -191,6 +191,7 @@ int renumberHis(info_t *info);
 list_t *addNode(list_t **, const char *, int);
 list_t *addEndnode(list_t **, const char *, int);
 size_t printstrList(const list_t *);
+size_t plist(const list_t *h);
 int _indexdelnode(list_t **, unsigned int);
 void _freeList(list_t **);
 

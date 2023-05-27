@@ -13,7 +13,6 @@ int _interactif(info_t *info)
 /**
  *_atoi - converts string to integer
  *@s: the string to be converted
- *
  *Return: 0 if no numbers in string, converted number otherwise 1
  */
 int _atoi(char *s)
@@ -47,7 +46,6 @@ int _atoi(char *s)
 /**
  *_isalpha - checks for alphabet character
  *@c: The character to input
- *
  *Return: 1 if c is an alphabet, 0 otherwise
  */
 int _isalpha(int c)
@@ -76,7 +74,6 @@ int _isdelim(char c, char *delim)
 /**
  * _delcomment - function replaces first instance of '#' with '\0'
  * @buf: address of the string to modify
- *
  * Return: Always 0;
  */
 void _delcomment(char *buf)

@@ -62,15 +62,15 @@ void _infoFree(info_t *info, int all)
 		}
 		if (info->env)
 		{
-			free_list(&(info->env));
+			_freeList(&(info->env));
 		}
 		if (info->history)
 		{
-			free_list(&(info->history));
+			_freeList(&(info->history));
 		}
 		if (info->alias)
 		{
-			free_list(&(info->alias));
+			_freeList(&(info->alias));
 		}
 		ffree(info->environ);
 		{

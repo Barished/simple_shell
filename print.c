@@ -19,7 +19,7 @@ char *_convno(long int num, int base, int flags)
 	if (!(flags & CONVERT_UNSIGNED) && num < 0)
 	{
 		n = -num;
-		sign = '-';
+		amount = '-';
 
 	}
 	array = flags & CONVERT_LOWERCASE ? "0123456789abcdef" : "0123456789ABCDEF";
@@ -31,8 +31,8 @@ char *_convno(long int num, int base, int flags)
 		n /= base;
 	} while (n != 0);
 
-	if (sign)
-		*--ptr = sign;
+	if (amount)
+		*--ptr = amount;
 	return (ptr);
 }
 
@@ -59,7 +59,7 @@ int _printdeci(int input, int fd)
 	}
 	else
 		bale = input;
-	wave = _abs_;
+	wave = bale;
 	for (i = 1000000000; i > 1; i /= 10)
 	{
 		if (bale / i)

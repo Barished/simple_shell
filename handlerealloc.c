@@ -12,13 +12,13 @@ int _unsetenv(info_t *info, char *varia)
 	size_t j = 0;
 	char *new;
 
-	if (!node || !var)
+	if (!node || !varia)
 	{
 		return (0);
 	}
 	while (node)
 	{
-		new = starts_with(node->s, var);
+		new = starts_with(node->s, varia);
 		if (new && *new == '=')
 		{
 			info->env_changed = _indexdelnode(&(info->env), j);
@@ -61,7 +61,7 @@ int _setenv(info_t *info, char *var, char *value)
 	node = info->env;
 	while (node)
 	{
-		new = starts_with(node->str, var);
+		new = starts_with(node->s, var);
 		if (new && *new == '=')
 		{
 			free(node->s);
@@ -71,7 +71,7 @@ int _setenv(info_t *info, char *var, char *value)
 		}
 		node = node->next;
 	}
-	add_node_end(&(info->env), buffer, 0);
+	addEndnode(&(info->env), buffer, 0);
 	free(buffer);
 	info->env_changed = 1;
 	return (0);

@@ -17,7 +17,7 @@ int my_exit(info_t *info)
 		if (exitcheck == -1)
 		{
 			info->status = 2;
-			print_error(info, "Illegal number: ");
+			_printerr(info, "Illegal number: ");
 			_eputs(info->argv[1]);
 			_eputchar('\n');
 			return (1);
@@ -113,7 +113,7 @@ char **strtow(char *str, char *d)
 	if (!d)
 		d = " ";
 	for (i = 0; str[i] != '\0'; i++)
-		if (!is_delim(str[i], d) && (is_delim(str[i + 1], d) || !str[i + 1]))
+		if (!_isdelim(str[i], d) && (_delim(str[i + 1], d) || !str[i + 1]))
 			numwords++;
 
 	if (numwords == 0)
@@ -123,7 +123,7 @@ char **strtow(char *str, char *d)
 		return (NULL);
 	for (i = 0, j = 0; j < numwords; j++)
 	{
-		while (is_delim(str[i], d))
+		while (_isdelim(str[i], d))
 			i++;
 		k = 0;
 		while (!is_delim(str[i + k], d) && str[i + k])

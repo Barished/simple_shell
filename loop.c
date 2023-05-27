@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- *shell - main shell loop
+ * shell - main shell loop
  * @info: the parameter & return info struct
  * @av: the argument vector from main()
  *
@@ -14,8 +14,8 @@ int shell(info_t *info, char **av)
 
 	while (r != -1 && builtin_ret != -2)
 	{
-		clear_info(info);
-		if (interactive(info))
+		_infoClear(info);
+		if (interactif(info))
 			_puts("$ ");
 		_eputchar(BUF_FLUSH);
 		r = get_input(info);
@@ -26,13 +26,13 @@ int shell(info_t *info, char **av)
 			if (builtin_ret == -1)
 				find_cmd(info);
 		}
-		else if (interactive(info))
+		else if (interactif(info))
 			_putchar('\n');
-		free_info(info, 0);
+		_infoFree(info, 0);
 	}
-	write_history(info);
+	historyWrite(info);
 	free_info(info, 1);
-	if (!interactive(info) && info->status)
+	if (!interactif(info) && info->status)
 		exit(info->status);
 	if (builtin_ret == -2)
 	{
@@ -44,7 +44,7 @@ int shell(info_t *info, char **av)
 }
 
 /**
- *pstring - prints an input string
+ * pstring - prints an input string
  * @str: the string to be printed
  * @fd: the filedescriptor to write to
  *
@@ -78,7 +78,7 @@ size_t plist(const list_t *h)
 		_puts(convert_number(h->num, 10, 0));
 		_putchar(':');
 		_putchar(' ');
-		_puts(h->str ? h->str : "(nil)");
+		_puts(h->s ? h->s : "(nil)");
 		_puts("\n");
 		h = h->next;
 		i++;
@@ -106,7 +106,7 @@ char **ltostring(list_t *head)
 		return (NULL);
 	for (i = 0; node; node = node->next, i++)
 	{
-		str = malloc(_strlen(node->str) + 1);
+		str = malloc(_strlen(node->s) + 1);
 		if (!str)
 		{
 			for (j = 0; j < i; j++)
@@ -115,7 +115,7 @@ char **ltostring(list_t *head)
 			return (NULL);
 		}
 
-		str = _strcpy(str, node->str);
+		str = _strcpy(str, node->s);
 		strs[i] = str;
 	}
 	strs[i] = NULL;
