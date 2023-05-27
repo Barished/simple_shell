@@ -29,8 +29,8 @@ int unset_alias(info_t *info, char *s)
 	}
 	c = *new;
 	*new = 0;
-	ret = _nodeIndex(&(info->alias),
-		_nodeIndex(info->alias, startNode(info->alias, s, -1)));
+	ret = _indexdelnode(&(info->alias),
+		_indexdelnode(info->alias, startNode(info->alias, s, -1)));
 	*new = c;
 	return (ret);
 }
