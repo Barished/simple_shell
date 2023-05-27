@@ -21,7 +21,7 @@ int shell(info_t *info, char **av)
 		r = get_input(info);
 		if (r != -1)
 		{
-			set_info(info, av);
+			_infoSet(info, av);
 			builtin_ret = find_builtin(info);
 			if (builtin_ret == -1)
 				find_cmd(info);
@@ -31,7 +31,7 @@ int shell(info_t *info, char **av)
 		_infoFree(info, 0);
 	}
 	historyWrite(info);
-	free_info(info, 1);
+	_infoFree(info, 1);
 	if (!interactif(info) && info->status)
 		exit(info->status);
 	if (builtin_ret == -2)
@@ -75,7 +75,7 @@ size_t plist(const list_t *h)
 
 	while (h)
 	{
-		_puts(convert_number(h->num, 10, 0));
+		_puts(_convno(h->num, 10, 0));
 		_putchar(':');
 		_putchar(' ');
 		_puts(h->s ? h->s : "(nil)");

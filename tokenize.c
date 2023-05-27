@@ -68,7 +68,7 @@ int my_cd(info_t *info)
 		chdir_ret = chdir(info->argv[1]);
 	if (chdir_ret == -1)
 	{
-		print_error(info, "can't cd to ");
+		_printerr(info, "can't cd to ");
 		_eputs(info->argv[1]), _eputchar('\n');
 	}
 	else
@@ -113,7 +113,7 @@ char **strtow(char *str, char *d)
 	if (!d)
 		d = " ";
 	for (i = 0; str[i] != '\0'; i++)
-		if (!_isdelim(str[i], d) && (_delim(str[i + 1], d) || !str[i + 1]))
+		if (!_isdelim(str[i], d) && (_isdelim(str[i + 1], d) || !str[i + 1]))
 			numwords++;
 
 	if (numwords == 0)

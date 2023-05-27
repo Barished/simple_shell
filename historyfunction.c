@@ -10,7 +10,7 @@ char *_historyFile(info_t *info)
 {
 	char *buff, *direc;
 
-	direc = getEnv(info, "HOME=");
+	direc = _getenv(info, "HOME=");
 	if (!direc)
 	{
 		return (NULL);
@@ -63,7 +63,7 @@ int read_history(info_t *info)
 	int i, last = 0, linecount = 0;
 	ssize_t fd, rdlen, fsize = 0;
 	struct stat st;
-	char *buf = NULL, *filename = get_history_file(info);
+	char *buf = NULL, *filename = _historyFile(info);
 
 	if (!filename)
 		return (0);
