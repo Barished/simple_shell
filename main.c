@@ -36,7 +36,7 @@ int main(int argc, char **argv)
 		}
 		info->readfd = fd;
 	}
-	populate_env_list(info);
+	show_env(info);
 	read_history(info);
 	shell(info, argv);
 	return (EXIT_SUCCESS);
