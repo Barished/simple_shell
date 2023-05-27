@@ -18,7 +18,7 @@ int _unsetenv(info_t *info, char *varia)
 	}
 	while (node)
 	{
-		new = starts_with(node->s, varia);
+		new = startwith(node->s, varia);
 		if (new && *new == '=')
 		{
 			info->env_changed = _indexdelnode(&(info->env), j);
