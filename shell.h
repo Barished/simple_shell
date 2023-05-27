@@ -105,6 +105,9 @@ typedef struct builtin
 	int (*func)(info_t *);
 } builtin_table;
 
+ssize_t buffread(info_t *info, char *buf, size_t *i);
+ssize_t inputbuff(info_t *info, char **buf, size_t *len);
+
 
 int shell(info_t *, char **);
 int fbuiltin(info_t *);
