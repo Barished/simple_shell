@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * getEnv - returns the string array copy of our environ
+ * getEnv - returns the string array copy of our environm
  * @info: Structure containing potential arguments.
  * Return: Always 0
  */

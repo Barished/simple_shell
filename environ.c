@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * show_env - populates environment linked list
+ * show_env - populates environments linked list
  * @info: Structure containing potential arguments. Used to maintain
  *constant function prototype.
  * Return: Always 0

@@ -2,7 +2,7 @@
 
 /**
  * getnodin - gets the index of a node
- * @head: pointer to list head
+ * @head: pointer to the list head
  * @node: pointer to the node
  *
  * Return: index of node or -1

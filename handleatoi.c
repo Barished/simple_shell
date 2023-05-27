@@ -2,7 +2,7 @@
 
 /**
  * interactif - returns true if shell is interactive.
- * @info: pointer to struct
+ * @info: pointer to the struct
  * Return: 1 if shell is in interactive mode,otherwise 0
  */
 int interactif(info_t *info)

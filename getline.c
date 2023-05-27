@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- *cblock - blocks ctrl-c
+ *cblock - blocks the ctrl-c
  * @sig_num: the signal number
  *
  * Return: void

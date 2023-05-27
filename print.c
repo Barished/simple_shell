@@ -2,7 +2,7 @@
 
 /**
  * _convno - converts a number
- * @num: the number
+ * @num: number
  * @base: the base
  * @flags: the argument flags
  *

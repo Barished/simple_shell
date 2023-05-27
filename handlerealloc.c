@@ -2,7 +2,7 @@
 
 /**
  * _unsetenv - Remove an environment variable
- * @info: Structure containing potential arguments.
+ * @info: Structure containing the potential arguments.
  *  Return: 1 on delete, 0 otherwise
  * @varia: the string env var property
  */

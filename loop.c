@@ -2,7 +2,7 @@
 
 /**
  * shell - main shell loop
- * @info: the parameter & return info struct
+ * @info: the parameter & return the info struct
  * @av: the argument vector from main()
  *
  * Return: 0 on success, 1 on error, or error code

@@ -4,7 +4,7 @@
  * addNode - adds a node to the start of the list
  * @head: address of pointer to head node
  * @s: str field of node
- * @n: node index used by history
+ * @n: node index used by the history
  * Return: size of list
  */
 list_t *addNode(list_t **head, const char *s, int n)
