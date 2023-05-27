@@ -144,7 +144,7 @@ char *_memset(char *, char, unsigned int);
 void ffree(char **);
 void *_realloc(void *, unsigned int, unsigned int);
 
-int bfree(void **);
+int _pfree(void **);
 
 int interactif(info_t *);
 int _isdelim(char, char *);

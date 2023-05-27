@@ -18,13 +18,13 @@ int shell(info_t *info, char **av)
 		if (interactif(info))
 			_puts("$ ");
 		_eputchar(BUF_FLUSH);
-		r = get_input(info);
+		r = _getinput(info);
 		if (r != -1)
 		{
 			_infoSet(info, av);
-			builtin_ret = find_builtin(info);
+			builtin_ret = fbuiltin(info);
 			if (builtin_ret == -1)
-				find_cmd(info);
+				fcmd(info);
 		}
 		else if (interactif(info))
 			_putchar('\n');
