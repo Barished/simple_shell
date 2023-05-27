@@ -76,7 +76,7 @@ void _infoFree(info_t *info, int all)
 		{
 			info->environ = NULL;
 		}
-		bfree((void **)info->cmd_buf);
+		_pfree((void **)info->cmd_buf);
 		if (info->readfd > 2)
 		{
 			close(info->readfd);
