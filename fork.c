@@ -22,14 +22,14 @@ ssize_t getnodin(list_t *head, list_t *node)
 }
 
 /**
- * nodestart- returns node whose string starts with prefix
+ * startNode- returns node whose string starts with prefix
  * @node: pointer to list head
  * @prefix: string to match
  * @c: the next character after prefix to match
  *
  * Return: match node or null
  */
-list_t *nodestart(list_t *node, char *prefix, char c)
+list_t *startNode(list_t *node, char *prefix, char c)
 {
 	char *r = NULL;
 
