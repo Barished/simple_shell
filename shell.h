@@ -172,19 +172,19 @@ void _infoClear(info_t *);
 void _infoSet(info_t *, char **);
 void _infoFree(info_t *, int);
 
-<<<<<<< HEAD
+
 char *_getenv(info_t *, const char *);
 int _myenv(info_t *);
 int set_env(info_t *);
 int unset_env(info_t *);
 int populate_env_list(info_t *);
-=======
+
 char *get_env(info_t *, const char *);
 int curr_env(info_t *);
 int set_env(info_t *);
 int unset_env(info_t *);
 int show_env(info_t *);
->>>>>>> 7a0e1e5f75db484651a934910efa2c245b809c66
+
 
 char **getEnv(info_t *);
 int _unsetenv(info_t *, char *);
