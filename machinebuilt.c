@@ -7,7 +7,7 @@
  */
 int _listHistory(info_t *info)
 {
-	listPrint(info->history);
+	printstrList(info->history);
 	return (0);
 }
 
@@ -29,7 +29,7 @@ int unset_alias(info_t *info, char *s)
 	}
 	c = *new;
 	*new = 0;
-	ret = _indexdelnode(&(info->alias),
+	ret = _nodeIndex(&(info->alias),
 		_nodeIndex(info->alias, startNode(info->alias, s, -1)));
 	*new = c;
 	return (ret);
